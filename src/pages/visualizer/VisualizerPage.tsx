@@ -24,6 +24,8 @@ export function VisualizerPage(): ReactNode {
     return <Navigate to={`/${search}`} />;
   }
 
+  const hasDetailedState = algorithm.format !== 'prosperity4';
+
   const conversionProducts = new Set();
   for (const row of algorithm.data) {
     for (const product of Object.keys(row.state.observations.conversionObservations)) {
@@ -115,9 +117,11 @@ export function VisualizerPage(): ReactNode {
         <Grid.Col span={{ xs: 12, sm: 6 }}>
           <ProfitLossChart symbols={sortedSymbols} />
         </Grid.Col>
-        <Grid.Col span={{ xs: 12, sm: 6 }}>
-          <PositionChart symbols={sortedSymbols} />
-        </Grid.Col>
+        {hasDetailedState && (
+          <Grid.Col span={{ xs: 12, sm: 6 }}>
+            <PositionChart symbols={sortedSymbols} />
+          </Grid.Col>
+        )}
         {symbolColumns}
         <Grid.Col span={12}>
           <TimestampsCard />

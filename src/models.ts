@@ -101,6 +101,8 @@ export interface Algorithm {
   summary?: AlgorithmSummary;
   activityLogs: ActivityLogRow[];
   data: AlgorithmDataRow[];
+  format?: 'prosperity3' | 'prosperity4';
+  finalPositions?: Record<Product, Position>;
 }
 
 export type CompressedListing = [symbol: ProsperitySymbol, product: Product, denomination: Product];
