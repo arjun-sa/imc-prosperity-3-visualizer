@@ -9,7 +9,7 @@ Symbol = str
 Product = str
 Position = int
 
-
+#hi
 class Trader:
     PRODUCTS = ("ASH_COATED_OSMIUM", "INTARIAN_PEPPER_ROOT")
     POSITION_LIMITS: Dict[Product, int] = {
