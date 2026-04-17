@@ -164,15 +164,14 @@ class Trader:
         <HomeCard title="Welcome!">
           {/* prettier-ignore */}
           <Text>
-            IMC Prosperity Visualizer is a visualizer for <Anchor href="https://prosperity.imc.com/" target="_blank" rel="noreferrer">IMC Prosperity</Anchor> algorithms.
-            Its source code is available in the <Anchor href="https://github.com/jmerle/imc-prosperity-3-visualizer" target="_blank" rel="noreferrer">jmerle/imc-prosperity-3-visualizer</Anchor> GitHub repository.
+            IMC Prosperity 4 Visualizer is a visualizer for <Anchor href="https://prosperity.imc.com/" target="_blank" rel="noreferrer">IMC Prosperity 4</Anchor> algorithms.
             Load an algorithm below to get started.
           </Text>
         </HomeCard>
 
         <HomeCard title="Prerequisites">
           <Text>
-            IMC Prosperity 3 Visualizer assumes your algorithm logs in a certain format. Algorithms that use a different
+            IMC Prosperity 4 Visualizer assumes your algorithm logs in a certain format. Algorithms that use a different
             logging format may cause unexpected errors when opening them in the visualizer. Please use the following
             boilerplate for your algorithm (or adapt your algorithm to use the logger from this code) and use{' '}
             <Code>logger.print()</Code> where you would normally use <Code>print()</Code>:
