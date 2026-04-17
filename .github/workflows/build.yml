@@ -1,6 +1,19 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -21,6 +34,9 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -30,10 +46,20 @@ jobs:
       - name: Build
         run: pnpm build && cp 404.html dist/404.html
 
-      - name: Deploy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist
-          git-config-name: GitHub Actions
-          git-config-email: actions@github.com
+          path: dist
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
